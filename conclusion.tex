@@ -1,0 +1,73 @@
+\section{Perceptron}
+A perceptron is one of the simplest types of artificial neurons and is used for binary classification tasks. Imagine you have a model that needs to decide if an email is spam or not. The perceptron does this by taking in features (like the number of certain keywords in the email), multiplying each feature by a weight (which signifies the importance of that feature), adding a bias term (a constant value that adjusts the output), and then passing the result through a step function that decides the final output. The step function outputs one of two possible values, usually 0 or 1, indicating the class of the input. The formula is:
+
+\[
+\hat{y} = \text{step}(w \cdot x + b)
+\]
+
+where \( w \) are the weights, \( x \) are the features, and \( b \) is the bias.
+
+\section{Sigmoid}
+The sigmoid function is used to introduce non-linearity into the model, which allows the network to learn complex patterns. It maps any real-valued number into a value between 0 and 1, making it especially useful for binary classification problems where you need to predict probabilities. For example, if the output of a sigmoid function is 0.8, it can be interpreted as an 80\% probability that an email is spam. The sigmoid function is:
+
+\[
+\sigma(z) = \frac{1}{1 + e^{-z}}
+\]
+
+where \( z \) is the weighted sum of inputs plus the bias.
+
+\section{Neuron Structure}
+In a neural network, a neuron receives input values, multiplies them by corresponding weights, adds a bias, and then applies an activation function to the result. Think of a neuron as a small unit that performs a calculation and decides whether to "fire" or not. The structure is:
+\begin{itemize}
+    \item Input: Features or previous layer’s outputs.
+    \item Weights: Parameters that scale the input values.
+    \item Bias: An additional parameter that shifts the activation function.
+    \item Activation Function: Applies a non-linear transformation to the weighted sum.
+\end{itemize}
+
+The computation in a neuron is:
+
+\[
+z = w \cdot x + b
+\]
+\[
+a = \text{activation}(z)
+\]
+
+where \( z \) is the weighted sum and \( a \) is the output after applying the activation function.
+
+\section{MNIST}
+MNIST is a dataset used for training and testing machine learning models, particularly for image recognition. It consists of 70,000 grayscale images of handwritten digits (0 through 9), each 28x28 pixels. This dataset is widely used because it is simple and well-understood, making it a good starting point for learning about image classification and neural networks. For example, you can train your neural network to recognize digits by feeding it these images and adjusting its parameters based on its performance.
+
+\section{Cost Function}
+The cost function, or loss function, measures how well your model's predictions match the actual values. It tells you how "off" your model's predictions are. For binary classification problems (like spam detection), a common cost function is binary cross-entropy loss. It calculates the difference between the predicted probability and the actual label, penalizing the model more when it’s wrong:
+
+\[
+J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log\left( \hat{y}^{(i)} \right) + \left(1 - y^{(i)} \right) \log\left( 1 - \hat{y}^{(i)} \right) \right]
+\]
+
+where \( m \) is the number of examples, \( y^{(i)} \) is the true label, and \( \hat{y}^{(i)} \) is the predicted probability.
+
+\section{Gradient Descent}
+Gradient descent is an optimization technique used to minimize the cost function by updating the model's weights and biases. Imagine you are trying to find the lowest point in a hilly terrain. Gradient descent is like taking steps in the direction that most steeply goes downhill. You adjust your weights based on how much they contribute to the cost, which is determined by the gradient (or slope) of the cost function. The update rules are:
+
+\[
+w := w - \eta \frac{\partial J(w)}{\partial w}
+\]
+\[
+b := b - \eta \frac{\partial J(b)}{\partial b}
+\]
+
+where \( \eta \) is the learning rate, which controls how big a step you take.
+
+\section{Stochastic Gradient Descent (SGD)}
+Stochastic Gradient Descent (SGD) is a variation of gradient descent where the model’s parameters are updated more frequently—after each training example or small batch of examples—rather than after the whole dataset. This can make learning faster and help the model better handle noisy data. Each update is based on a single data point or a small batch, which can make the process more dynamic and quicker to converge:
+
+\[
+w := w - \eta \frac{\partial J(w; x^{(i)}, y^{(i)})}{\partial w}
+\]
+\[
+b := b - \eta \frac{\partial J(b; x^{(i)}, y^{(i)})}{\partial b}
+\]
+
+where \( (x^{(i)}, y^{(i)}) \) is a single training example.
